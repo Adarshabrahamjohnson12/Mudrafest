@@ -9,7 +9,7 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Arial', sans-serif;
+            font-family: 'Poppins', sans-serif;
         }
 
         body {
@@ -27,7 +27,13 @@
         h1 {
             font-size: 2.5rem;
             margin-bottom: 20px;
-            text-shadow: 2px 2px 10px rgba(255, 255, 255, 0.2);
+            text-shadow: 2px 2px 10px rgba(255, 255, 255, 0.3);
+            animation: glow 2s infinite alternate;
+        }
+
+        @keyframes glow {
+            from { text-shadow: 0 0 10px #fff; }
+            to { text-shadow: 0 0 20px #ff5733; }
         }
 
         table {
@@ -36,23 +42,25 @@
             background: white;
             border-radius: 10px;
             overflow: hidden;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            animation: fadeIn 1s ease-in-out;
         }
 
         th, td {
             padding: 15px;
             border: 1px solid #ddd;
             color: black;
+            font-size: 1.1rem;
         }
 
         th {
             background: #ff5733;
             color: white;
             font-size: 1.2rem;
+            cursor: pointer;
         }
 
         td {
-            font-size: 1.1rem;
             background: rgba(255, 255, 255, 0.9);
         }
 
@@ -64,6 +72,16 @@
             font-size: 1.2rem;
             font-style: italic;
             color: #ddd;
+            animation: blink 1.5s infinite;
+        }
+
+        @keyframes blink {
+            50% { opacity: 0.5; }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
     </style>
 </head>
@@ -74,8 +92,8 @@
         <table id="leaderboard">
             <thead>
                 <tr>
-                    <th>Department</th>
-                    <th>Score</th>
+                    <th onclick="sortTable(0)">Department ⬍</th>
+                    <th onclick="sortTable(1)">Score ⬍</th>
                 </tr>
             </thead>
             <tbody>
@@ -86,7 +104,6 @@
 
     <script>
         async function fetchLeaderboard() {
-            // Adding a random number to prevent caching
             const timestamp = new Date().getTime();
             const sheetUrl = `https://docs.google.com/spreadsheets/d/1J7JBZYb9eqHoyTJvkI2wDI6C8CTDadPu_5oEmlak370/gviz/tq?tqx=out:csv&_=${timestamp}`;
 
@@ -100,8 +117,7 @@
                 const leaderboardBody = document.querySelector("#leaderboard tbody");
                 leaderboardBody.innerHTML = ""; // Clear table before updating
 
-                rows.forEach((row, index) => {
-                    if (index === 0) return; // Skip header row
+                rows.slice(1).forEach(row => { // Skip header row
                     const [department, score] = row;
 
                     const tr = document.createElement("tr");
@@ -116,11 +132,26 @@
                 document.getElementById("loading").innerText = "Failed to load data. Retrying...";
             }
 
-            // Fetch leaderboard again after 10 seconds
             setTimeout(fetchLeaderboard, 10000);
         }
 
-        // Initial fetch
+        function sortTable(columnIndex) {
+            const table = document.getElementById("leaderboard");
+            const rows = Array.from(table.rows).slice(1); // Skip header
+
+            rows.sort((a, b) => {
+                let valA = a.cells[columnIndex].innerText.trim();
+                let valB = b.cells[columnIndex].innerText.trim();
+
+                if (!isNaN(valA) && !isNaN(valB)) { // Sort numbers
+                    return Number(valB) - Number(valA);
+                }
+                return valA.localeCompare(valB); // Sort text
+            });
+
+            rows.forEach(row => table.appendChild(row)); // Reorder rows
+        }
+
         fetchLeaderboard();
     </script>
 
