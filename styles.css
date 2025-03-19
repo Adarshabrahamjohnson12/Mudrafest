@@ -116,78 +116,6 @@ nav.navbar.bootsnav {
 .navbar-header a.navbar-brand span{display: inline-block;color:#4e4ffa;text-transform:capitalize;}
 
 .wrap-sticky nav.navbar.bootsnav.sticked .navbar-header a.navbar-brand,.wrap-sticky nav.navbar.bootsnav.sticked .navbar-header a.navbar-brand:hover,.wrap-sticky nav.navbar.bootsnav.sticked .navbar-header a.navbar-brand:focus {padding:30px 0px;}
-/*.navbar-brand*/
-
-
-/*-------------------------------------
-        3.  Welcome-hero
---------------------------------------*/
-/* .welcome-hero {
-    position: relative;
-    background:url(assets/images/bg.jpg)no-repeat;
-    background-position: center;
-    background-size: cover;
-    z-index: 1;
-}
-.welcome-hero:before {
-    position: absolute;
-    content: "";
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-
-}
-.header-area{position: absolute;top:0;left:0;width: 100%;z-index: 99;}
-
-.welcome-hero-txt{text-align: center;padding:290px 0 372px;}
-.welcome-hero-txt h2 {
-    font-size: 42px;
-    color: #fff;
-    font-weight: 700;
-    text-transform: uppercase;
-    margin-top: 100px; 
-}
-.welcome-hero-txt p {
-    font-size: 18px;
-    text-transform: initial;
-    color: #fff;
-    font-weight: 500;
-    max-width: 735px;
-    margin:  auto;
-}
-.welcome-btn {
-    display: inline-block;
-    width: 230px;
-    height: 60px;
-    background: #4e4ffa;
-    color: #fff;
-    border-radius: 3px;
-    margin-top: 55px;
-    -webkit-transition: .3s linear; 
-    -moz-transition:.3s linear; 
-    -ms-transition:.3s linear; 
-    -o-transition:.3s linear;
-    transition: .3s linear;
-}
-.welcome-btn:hover{
-    background: #0102fa;
-}
-
-
-.service {
-    background-color: #121212;
-    color: #e0e0e0;
-    padding: 20px 0;
-}
-
-body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #121212;
-    color: #e0e0e0;
-    margin: 0;
-    padding: 10px;
-} */
 
 
 /* Leaderboard container */
@@ -433,5 +361,61 @@ body::before {
 @media (max-width: 768px) {
     .chart-container {
         padding: 15px;
+    }
+}
+
+/* mobile single pg */
+html, body {
+    overflow: hidden; /* Prevents scrolling */
+    height: 100vh; /* Ensures the content fits within the viewport */
+    width: 100vw;
+    margin: 0;
+    padding: 0;
+}
+
+/* Ensure the content does not exceed the screen */
+.leaderboard-container {
+    height: 100vh; /* Makes sure it fits the screen */
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Centers content vertically */
+    align-items: center; /* Centers content horizontally */
+    text-align: center;
+    width: 100%;
+    max-width: 900px;
+}
+
+/* For the leaderboard table */
+.leaderboard {
+    width: 90%;
+    max-width: 900px;
+    overflow-x: auto; /* Ensures table content remains within view */
+}
+
+/* For the chart */
+.chart-container {
+    width: 100%;
+    max-width: 90%;
+    height: 40vh; /* Limits chart height */
+}
+
+/* Mobile specific styles */
+@media (max-width: 768px) {
+    html, body {
+        height: 100vh; /* Force everything to fit in a single screen */
+        overflow: hidden;
+    }
+
+    .leaderboard-container {
+        padding: 10px;
+        height: 100vh;
+    }
+
+    .chart-container {
+        height: 35vh; /* Adjust chart size */
+    }
+
+    table {
+        font-size: 14px; /* Reduce text size for better fit */
     }
 }
