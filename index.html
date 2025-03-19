@@ -1,372 +1,188 @@
-<!doctype html>
+<!DOCTYPE html>
 <html class="no-js" lang="en">
 
-    <head>
-        <!-- meta data -->
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+<head>
+    <!-- Meta Data -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <!--font-family-->
-		<link href="https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+    <!-- Title -->
+    <title>Mudra Leaderboard</title>
 
-		<link href="https://fonts.googleapis.com/css?family=Rufina:400,700" rel="stylesheet">
-        
-        <!-- title of site -->
-        <title>Mudra</title>
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/icon" href="assets/logo/favicon.png"/>
 
-        <!-- For favicon png -->
-		<link rel="shortcut icon" type="image/icon" href="assets/logo/favicon.png"/>
-       
-        <!--font-awesome.min.css-->
-        
-        <!--bootstrap.min.css-->
-        <link rel="stylesheet" href="assets/css/bootstrap.min.css">
-		
-		<!-- bootsnav -->
-		<link rel="stylesheet" href="assets/css/bootsnav.css" >	
-        
-        <!--style.css-->
-        <link rel="stylesheet" href="assets/css/style.css">
-        
-        <!--responsive.css-->
-        <link rel="stylesheet" href="assets/css/responsive.css">
-        
-   
-    </head>
-	
-	<body>
-        <section id="home" class="welcome-hero">
-            <div class="top-area">
-                <div class="header-area">
-                    <nav class="navbar navbar-default bootsnav navbar-sticky navbar-scrollspy" data-minus-value-desktop="70" data-minus-value-mobile="55" data-speed="1000">
-                        <div class="container">
-                            <div class="navbar-header">
-                                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-menu">
-                                    <i class="fa fa-bars"></i>
-                                </button>
-                                <a class="navbar-brand" href="index.html">MUDRA2025</a>
-                            </div>
-                            <div class="collapse navbar-collapse menu-ui-design" id="navbar-menu">
-                                <ul class="nav navbar-nav navbar-right" data-in="fadeInDown" data-out="fadeOutUp"></ul>
-                            </div>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Rufina:400,700" rel="stylesheet">
+
+    <!-- CSS Files -->
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/bootsnav.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/responsive.css">
+    <link rel="stylesheet" href="styles.css"> <!-- Custom CSS -->
+
+    <!-- Chart.js for Graph -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+
+    <!-- Header Section -->
+    <section id="home" class="welcome-hero">
+        <div class="top-area">
+            <div class="header-area">
+                <nav class="navbar navbar-default bootsnav navbar-sticky navbar-scrollspy" data-minus-value-desktop="70" data-minus-value-mobile="55" data-speed="1000">
+                    <div class="container">
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-menu">
+                                <i class="fa fa-bars"></i>
+                            </button>
+                            <a class="navbar-brand" href="index.html">MUDRA2025</a>
                         </div>
-                    </nav>
-                </div>
+                        <div class="collapse navbar-collapse menu-ui-design" id="navbar-menu">
+                            <ul class="nav navbar-nav navbar-right" data-in="fadeInDown" data-out="fadeOutUp"></ul>
+                        </div>
+                    </div>
+                </nav>
             </div>
-            <div class="container">
-                <div class="welcome-hero-txt"></div>
-            </div>
-        </section>
-    
-        <section id="leaderboard" class="leaderboard">
-            <h2>Leaderboard</h2>
+        </div>
+    </section>
+
+    <!-- Leaderboard Section -->
+    <section id="leaderboard" class="leaderboard-container">
+        <h2 class="section-title">Leaderboard</h2>
+        <div class="leaderboard">
             <table>
                 <thead>
                     <tr>
+                        <th>Rank</th>
                         <th class="Department">Department</th>
                         <th class="matches">Scores</th>
-                        
                     </tr>
                 </thead>
                 <tbody id="leaderboard-body">
                     <!-- Dynamic data will be inserted here -->
                 </tbody>
             </table>
-        </section>
-    
-            <footer>
-                &copy; 2025 Professional League • Last updated: March 16, 2025
-            </footer>
-        </div><!--/.container-->
+        </div>
 
-    </section><!--/.service-->
-    <!--service end-->
-<style>
-    <!-- Don't forget to include the CSS styles from the second document in the head section -->
-    /* Leaderboard styles for the service section */
-.service {
-    background-color: #121212;
-    color: #e0e0e0;
-    padding: 20px 0;
-}
+        <!-- Leaderboard Graph -->
+    <!-- Leaderboard Chart -->
+    <div class="chart-container">
+    <canvas id="leaderboardChart"></canvas>
+</div>
 
-body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #121212;
-    color: #e0e0e0;
-    margin: 0;
-    padding: 10px;
-}
+    </section>
 
-/* Chart container */
+    <!-- Footer -->
+    <footer>
+        &copy; 2025 Professional League • Last updated: March 16, 2025
+    </footer>
 
-.bar-3 {
-    background: linear-gradient(to top, #CD7F32, #E8B888);
-    border: 1px solid #CD7F32;
-}
-
-.bar-label {
-    position: absolute;
-    top: -30px;
-    font-weight: bold;
-    color: #e0e0e0;
-    text-align: center;
-    width: 100%;
-    background-color: rgba(30, 30, 30, 0.7);
-    padding: 4px 0;
-    border-radius: 4px;
-    font-size: 14px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-}
-
-/* Leaderboard container */
-.leaderboard {
-    background-color: #1e1e1e;
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
-    animation: slideUp 0.8s ease-out;
-    width: 100%;
-    max-width: 1000px;
-    margin: 0 auto;
-}
-
-/* Table styles */
-table {
-    width: 100%;
-    border-collapse: collapse;
-    table-layout: fixed;
-}
-
-thead {
-    background-color: #2d2d2d;
-    position: sticky;
-    top: 0;
-}
-
-th {
-    text-align: left;
-    padding: 12px 15px;
-    font-size: 0.9rem;
-    font-weight: 600;
-    color: #c9c9c9;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    border-bottom: 1px solid #333;
-}
-
-td {
-    padding: 12px 15px;
-    border-bottom: 1px solid #2d2d2d;
-    position: relative;
-    transition: all 0.3s ease;
-    text-align: center;
-    font-size: 0.9rem;
-}
-
-tr {
-    transition: background-color 0.3s ease;
-}
-
-tr:hover {
-    background-color: #2a2a2a;
-}
-
-/* Rank Styling */
-.rank {
-    width: 10%;
-    font-weight: bold;
-    font-size: 1.1rem;
-}
-
-.rank-1, .rank-2, .rank-3 {
-    font-size: 1.2rem;
-}
-
-.rank-1 {
-    color: #ffd700;
-}
-
-.rank-2 {
-    color: #c0c0c0;
-}
-
-.rank-3 {
-    color: #cd7f32;
-}
-
-/* Team Styling */
-.team {
-    width: 30%;
-    font-weight: 600;
-    text-align: left;
-}
-
-.team-cell {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-}
-
-.team-logo {
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    background-color: #333;
-    margin-right: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-    font-weight: bold;
-    color: white;
-}
-
-/* Score Styling */
-.score {
-    width: 15%;
-    font-weight: bold;
-    text-align: center;
-}
-
-/* Footer */
-footer {
-    margin-top: 30px;
-    text-align: center;
-    color: #555;
-    font-size: 0.8rem;
-    padding: 15px 0;
-}
-
-/* Animations */
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-}
-
-@keyframes slideUp {
-    from { transform: translateY(50px); opacity: 0; }
-    to { transform: translateY(0); opacity: 1; }
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-    .matches, .wins, .losses {
-        display: none;
-    }
-    
-    .team {
-        width: 50%;
-    }
-    
-    .score, .points {
-        width: 25%;
-    }
-    
-    .rank {
-        width: 10%;
-    }
-    
-    table {
-        font-size: 0.8rem;
-    }
-
-    .leaderboard {
-        width: 95%;
-        margin: 0 auto;
-    }
-
-    th, td {
-        padding: 10px;
-    }
-}
-
-@media (max-width: 480px) {
-    .leaderboard {
-        width: 100%;
-        box-shadow: none;
-        border-radius: 0;
-    }
-
-    th, td {
-        padding: 8px;
-        font-size: 0.75rem;
-    }
-
-    .team {
-        width: 60%;
-    }
-
-    .score, .points {
-        width: 20%;
-    }
-
-    .team-logo {
-        width: 25px;
-        height: 25px;
-        margin-right: 8px;
-    }
-
-    .rank {
-        font-size: 1rem;
-    }
-
-    .rank-1, .rank-2, .rank-3 {
-        font-size: 1.1rem;
-    }
-}
-</style>
-
-<script>
-    const sheetURL = "https://script.google.com/macros/s/AKfycbznHaikscZwtyJiAGJSruTVqJ8-tQJo-iVcF8QkkDOL_2Uru01yHvkLSVyqIjQrmdI/exec"; // Replace with your Google Apps Script Web App URL
+    <!-- JavaScript -->
+    <script>
+    const sheetURL = "https://script.google.com/macros/s/AKfycbznHaikscZwtyJiAGJSruTVqJ8-tQJo-iVcF8QkkDOL_2Uru01yHvkLSVyqIjQrmdI/exec"; 
+    let leaderboardChart; // Global variable for the chart
 
     async function fetchScores() {
         try {
             let response = await fetch(sheetURL);
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
             let data = await response.json();
-            data.sort((a, b) => b.points - a.points); // Sort by points descending
+
+            // Sort by Scores in descending order
+            data.sort((a, b) => b.Scores - a.Scores);
+
+            // Update leaderboard and chart
             updateLeaderboard(data);
+            updateChart(data);
         } catch (error) {
             console.error("Error fetching scores:", error);
         }
     }
 
     function updateLeaderboard(data) {
-    const leaderboardBody = document.getElementById('leaderboard-body');
-    leaderboardBody.innerHTML = ''; // Clear existing rows
-    data.forEach((team, index) => {
-        const row = document.createElement('tr');
-        row.innerHTML = `
-            <td class="Department">${team.Department || 'N/A'}</td>
-            <td class="matches">${team.Scores || 0}</td>
-        `;
-        leaderboardBody.appendChild(row);
-    });
-}
-
-async function fetchScores() {
-    try {
-        let response = await fetch(sheetURL);
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        let data = await response.json();
-
-        // Sort data by Scores in descending order (top scorers first)
-        data.sort((a, b) => b.Scores - a.Scores);
-
-        // Update the leaderboard with the sorted data
-        updateLeaderboard(data);
-    } catch (error) {
-        console.error("Error fetching scores:", error);
+        const leaderboardBody = document.getElementById('leaderboard-body');
+        leaderboardBody.innerHTML = ''; // Clear existing rows
+        data.forEach((team, index) => {
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td>${index + 1}</td>
+                <td class="Department">${team.Department || 'N/A'}</td>
+                <td class="matches">${team.Scores || 0}</td>
+            `;
+            leaderboardBody.appendChild(row);
+        });
     }
-}
 
+    function updateChart(data) {
+        const ctx = document.getElementById('leaderboardChart').getContext('2d');
 
-    setInterval(fetchScores, 10000);
+        // If a previous chart exists, destroy it to avoid duplication
+        if (leaderboardChart) {
+            leaderboardChart.destroy();
+        }
+
+        // Extract labels and scores
+        let labels = data.map(team => team.Department);
+        let scores = data.map(team => team.Scores);
+
+        leaderboardChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: "Scores",
+                    data: scores,
+                    backgroundColor: [
+                        '#FFD700', '#C0C0C0', '#CD7F32', '#4E89AE', '#A23E48', 
+                        '#FF5733', '#33FF57', '#5733FF', '#FF33A8', '#33FFF9'
+                    ],
+                    borderColor: "rgba(255, 255, 255, 0.8)",
+                    borderWidth: 2,
+                    borderRadius: 8
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { display: false },
+                    tooltip: {
+                        backgroundColor: "#222",
+                        titleColor: "#FFD700",
+                        bodyColor: "#fff"
+                    }
+                },
+                scales: {
+                    x: {
+                        grid: { display: false },
+                        ticks: {
+                            color: "#FFD700",
+                            font: { size: 14 }
+                        }
+                    },
+                    y: {
+                        grid: { color: "rgba(255, 255, 255, 0.2)" },
+                        ticks: {
+                            color: "#fff",
+                            font: { size: 14 }
+                        }
+                    }
+                }
+            }
+        });
+    }
+
+    // Fetch scores and update every 10 seconds
     fetchScores();
+    setInterval(fetchScores, 10000);
 </script>
+
 </body>
 </html>
