@@ -83,204 +83,241 @@
 
     </section><!--/.service-->
     <!--service end-->
-
+<style>
     <!-- Don't forget to include the CSS styles from the second document in the head section -->
-    <style>
-        /* Leaderboard styles for the service section */
-        .service {
-            background-color: #121212;
-            color: #e0e0e0;
-            padding: 20px 0;
-        }
+    /* Leaderboard styles for the service section */
+.service {
+    background-color: #121212;
+    color: #e0e0e0;
+    padding: 20px 0;
+}
 
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #121212;
-            color: #e0e0e0;
-            margin: 0;
-            padding: 20px;
-        }
-        
-        /* Chart container */
-     
-        
-      
-        .bar-3 {
-            background: linear-gradient(to top, #CD7F32, #E8B888);
-            border: 1px solid #CD7F32;
-        }
-        
-        .bar-label {
-            position: absolute;
-            top: -30px;
-            font-weight: bold;
-            color: #e0e0e0;
-            text-align: center;
-            width: 100%;
-            background-color: rgba(30, 30, 30, 0.7);
-            padding: 4px 0;
-            border-radius: 4px;
-            font-size: 14px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-        }
-        
-       
-        .leaderboard {
-            background-color: #1e1e1e;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
-            animation: slideUp 0.8s ease-out;
-        }
-        
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            table-layout: fixed;
-        }
-        
-        thead {
-            background-color: #2d2d2d;
-            position: sticky;
-            top: 0;
-        }
-        
-        th {
-            text-align: left;
-            padding: 15px 20px;
-            font-size: 0.9rem;
-            font-weight: 600;
-            color: #c9c9c9;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            border-bottom: 1px solid #333;
-        }
-        
-        td {
-            padding: 18px 20px;
-            border-bottom: 1px solid #2d2d2d;
-            position: relative;
-            transition: all 0.3s ease;
-        }
-        
-        tr {
-            transition: background-color 0.3s ease;
-        }
-        
-        tr:hover {
-            background-color: #2a2a2a;
-        }
-        
-        .rank {
-            width: 10%;
-            font-weight: bold;
-            font-size: 1.2rem;
-        }
-        
-        .rank-1, .rank-2, .rank-3 {
-            font-size: 1.3rem;
-        }
-        
-        .rank-1 {
-            color: #ffd700;
-        }
-        
-        .rank-2 {
-            color: #c0c0c0;
-        }
-        
-        .rank-3 {
-            color: #cd7f32;
-        }
-        
-        .team {
-            width: 30%;
-            font-weight: 600;
-        }
-        
-        .team-cell {
-            display: flex;
-            align-items: center;
-        }
-        
-        .team-logo {
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            background-color: #333;
-            margin-right: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-            font-weight: bold;
-            color: white;
-        }
-        
-       
-        .score {
-            width: 15%;
-            text-align: center;
-            font-weight: bold;
-        }
-        
-        
-        
-     
-      
-     
-        
-        
-        footer {
-            margin-top: 40px;
-            text-align: center;
-            color: #555;
-            font-size: 0.8rem;
-            padding: 20px 0;
-        }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-        
-        @keyframes slideUp {
-            from { transform: translateY(50px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
-        }
-        
-        @media (max-width: 768px) {
-            .matches, .wins, .losses {
-                display: none;
-            }
-            
-            .team {
-                width: 40%;
-            }
-            
-            .score, .points {
-                width: 25%;
-            }
-            
-            .rank {
-                width: 10%;
-            }
-            
-            .stat-card {
-                flex-direction: column;
-                gap: 20px;
-            }
-            
-            h1 {
-                font-size: 1.8rem;
-            }
-            
-            th, td {
-                padding: 12px 10px;
-            }
-        }
-    </style>
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #121212;
+    color: #e0e0e0;
+    margin: 0;
+    padding: 10px;
+}
 
+/* Chart container */
+
+.bar-3 {
+    background: linear-gradient(to top, #CD7F32, #E8B888);
+    border: 1px solid #CD7F32;
+}
+
+.bar-label {
+    position: absolute;
+    top: -30px;
+    font-weight: bold;
+    color: #e0e0e0;
+    text-align: center;
+    width: 100%;
+    background-color: rgba(30, 30, 30, 0.7);
+    padding: 4px 0;
+    border-radius: 4px;
+    font-size: 14px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+/* Leaderboard container */
+.leaderboard {
+    background-color: #1e1e1e;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+    animation: slideUp 0.8s ease-out;
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+/* Table styles */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+}
+
+thead {
+    background-color: #2d2d2d;
+    position: sticky;
+    top: 0;
+}
+
+th {
+    text-align: left;
+    padding: 12px 15px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #c9c9c9;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-bottom: 1px solid #333;
+}
+
+td {
+    padding: 12px 15px;
+    border-bottom: 1px solid #2d2d2d;
+    position: relative;
+    transition: all 0.3s ease;
+    text-align: center;
+    font-size: 0.9rem;
+}
+
+tr {
+    transition: background-color 0.3s ease;
+}
+
+tr:hover {
+    background-color: #2a2a2a;
+}
+
+/* Rank Styling */
+.rank {
+    width: 10%;
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+
+.rank-1, .rank-2, .rank-3 {
+    font-size: 1.2rem;
+}
+
+.rank-1 {
+    color: #ffd700;
+}
+
+.rank-2 {
+    color: #c0c0c0;
+}
+
+.rank-3 {
+    color: #cd7f32;
+}
+
+/* Team Styling */
+.team {
+    width: 30%;
+    font-weight: 600;
+    text-align: left;
+}
+
+.team-cell {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.team-logo {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: #333;
+    margin-right: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    font-weight: bold;
+    color: white;
+}
+
+/* Score Styling */
+.score {
+    width: 15%;
+    font-weight: bold;
+    text-align: center;
+}
+
+/* Footer */
+footer {
+    margin-top: 30px;
+    text-align: center;
+    color: #555;
+    font-size: 0.8rem;
+    padding: 15px 0;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideUp {
+    from { transform: translateY(50px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .matches, .wins, .losses {
+        display: none;
+    }
+    
+    .team {
+        width: 50%;
+    }
+    
+    .score, .points {
+        width: 25%;
+    }
+    
+    .rank {
+        width: 10%;
+    }
+    
+    table {
+        font-size: 0.8rem;
+    }
+
+    .leaderboard {
+        width: 95%;
+        margin: 0 auto;
+    }
+
+    th, td {
+        padding: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .leaderboard {
+        width: 100%;
+        box-shadow: none;
+        border-radius: 0;
+    }
+
+    th, td {
+        padding: 8px;
+        font-size: 0.75rem;
+    }
+
+    .team {
+        width: 60%;
+    }
+
+    .score, .points {
+        width: 20%;
+    }
+
+    .team-logo {
+        width: 25px;
+        height: 25px;
+        margin-right: 8px;
+    }
+
+    .rank {
+        font-size: 1rem;
+    }
+
+    .rank-1, .rank-2, .rank-3 {
+        font-size: 1.1rem;
+    }
+}
+</style>
 
 <script>
     const sheetURL = "https://script.google.com/macros/s/AKfycbznHaikscZwtyJiAGJSruTVqJ8-tQJo-iVcF8QkkDOL_2Uru01yHvkLSVyqIjQrmdI/exec"; // Replace with your Google Apps Script Web App URL
